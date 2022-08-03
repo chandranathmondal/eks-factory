@@ -57,6 +57,7 @@ End users: ARN of the IAM group/role.
 
 
 ## One-click Installation
+
 The above installation steps are automated using Shell scripts.
 
 
@@ -65,7 +66,7 @@ sh install.sh <S3 repository bucket/folder path> <Owner details> <End users>
 ```
 
 
-> Note: This is the recommended step to install the solution unless you are insterested in any specific steps as mentioned above for troubleshooting or so. Please make sure that the bucket is belonging to the same region where you are installing the solution.
+> _**Note:** This is the recommended step to install the solution unless you are insterested in any specific steps as mentioned above for troubleshooting or so. Please make sure that the bucket is belonging to the same region where you are installing the solution._
 
 
 #### Parameters
@@ -74,6 +75,10 @@ S3 repository: S3 repository bucket/folder path in the format: bucket/folder/sub
 Owner details: Owner name and/or email address.
 
 End users: ARN of the IAM group/role.
+
+
+## Key Consideration before installation
+Update the [aws-auth.yml.template](build-scripts/aws-auth.yml.template) based on your requirement. You need to add IAM users/roles that will have access to the provisioned clusters. Typically, these are the standard users/roles such as system administrators, audit users who would need to have access to all the resources. You can define different permission for different users/roles.
 
 
 ## Example Resource Provisioing
@@ -89,7 +94,7 @@ Resources:
     Type: AWS::ServiceCatalog::CloudFormationProvisionedProduct
     Properties:
       ProductName: EKS Control Plane
-      ProvisionedProductName: my-prod-EKS-control-plane
+      ProvisionedProductName: my-prod-EKS-Cluster
       ProvisioningArtifactName: New Cluster
       ProvisioningParameters:
       - Key: EnvironmentName
